@@ -1,0 +1,12 @@
+[[language]]
+name = "python"
+language-servers = ["ruff", "pylsp"]
+auto-format = true
+
+[language-server.pylsp]
+command = "uv"
+args = ["run", "pylsp"]
+
+[language-server.ruff]
+command = "uv"
+args = ["run", "ruff", "server"]

@@ -1,0 +1,20 @@
+[project]
+name = "sitebuilder"
+version = "0.1.0"
+description = "Static site builder that won't let you break links"
+readme = "README.md"
+authors = [
+    { name = "Colin Chan", email = "colin+git@lumeh.org" }
+]
+requires-python = ">=3.13"
+dependencies = []
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[dependency-groups]
+dev = [
+    "pylsp-mypy>=0.7.0",
+    "ruff>=0.11.2",
+]
