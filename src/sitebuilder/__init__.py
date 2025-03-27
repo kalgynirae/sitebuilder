@@ -9,7 +9,7 @@ from typing import Type, cast
 
 import tomllib
 
-from .actions import SCSS, Action, Copy, Redirect
+from .actions import Action, Copy, Redirect
 from .logging import dim, log, log_prefix, red, yellow
 from .resources import Resources
 from .urls import UrlPath, Urls
@@ -47,9 +47,7 @@ def log_walk_error(e: OSError) -> None:
     log(f"Error while walking {e.filename!r}", exc=e)
 
 
-DEFAULT_ACTIONS: dict[str, Type[Action]] = {
-    ".scss": SCSS,
-}
+DEFAULT_ACTIONS: dict[str, Type[Action]] = {}
 
 
 async def build(

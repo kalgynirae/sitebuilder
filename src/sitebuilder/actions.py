@@ -7,8 +7,6 @@ from pathlib import Path
 from textwrap import dedent
 from traceback import format_exception_only
 from typing import Callable, ClassVar, override
-
-import sass  # type: ignore
 import tomllib
 
 from .logging import dim, green, red
@@ -155,17 +153,6 @@ class Copy(SourceAction):
     @override
     def run_inner(self, dest: Path, resources: Resources) -> None:
         dest.write_bytes(self.source.read_bytes())
-
-
-@dataclass(frozen=True)
-class SCSS(SourceAction):
-    @override
-    def dest_path(self, path: Path) -> Path:
-        return path.with_suffix(".css")
-
-    @override
-    def run_inner(self, dest: Path, resources: Resources) -> None:
-        dest.write_text(sass.compile(filename=self.source, output_style="compressed"))
 
 
 def index_html_processor(
