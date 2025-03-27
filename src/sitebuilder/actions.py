@@ -156,7 +156,7 @@ class Copy(SourceAction):
 
 
 def index_html_processor(
-    processing_func: Callable[[str, dict[str, str], str, Resources], str],
+    processing_func: Callable[[Path, dict[str, str], str, Resources], str],
 ) -> type[Action]:
     @dataclass(frozen=True)
     class IndexHtmlProcessor(WithMeta, SourceAction):
@@ -166,7 +166,7 @@ def index_html_processor(
 
         @override
         def run_inner(self, dest: Path, resources: Resources) -> None:
-            out = processing_func(self.source.name, self.meta, self.contents, resources)
+            out = processing_func(self.source, self.meta, self.contents, resources)
             dest.write_text(out)
 
     return IndexHtmlProcessor
